@@ -38,51 +38,57 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
         .header-left {
             display: flex;
             flex-direction: column;
+            min-width: 200px;
         }
 
         .header h1 {
-            font-size: 24px;
+            font-size: clamp(18px, 4vw, 24px);
             font-weight: 700;
             display: flex;
             align-items: center;
             gap: 8px;
+            flex-wrap: wrap;
         }
 
         .header-subtitle {
-            font-size: 12px;
+            font-size: clamp(10px, 2vw, 12px);
             opacity: 0.9;
             margin-top: 2px;
         }
 
         .header-icon {
-            font-size: 28px;
+            font-size: clamp(24px, 5vw, 28px);
         }
 
         .stats {
             display: flex;
-            gap: 16px;
-            font-size: 14px;
+            gap: clamp(8px, 2vw, 16px);
+            font-size: clamp(12px, 2vw, 14px);
         }
 
         .stat-item {
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-width: 60px;
         }
 
         .stat-number {
-            font-size: 20px;
+            font-size: clamp(16px, 3vw, 20px);
             font-weight: 700;
         }
 
         .stat-label {
-            font-size: 11px;
+            font-size: clamp(9px, 1.8vw, 11px);
             opacity: 0.9;
+            text-align: center;
         }
 
         /* Legend */
@@ -95,6 +101,7 @@
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             z-index: 1000;
+            max-width: 200px;
         }
 
         .legend h3 {
@@ -117,6 +124,7 @@
             border-radius: 50%;
             border: 2px solid white;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            flex-shrink: 0;
         }
 
         .needs-relief {
@@ -136,8 +144,8 @@
             background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
             color: white;
             border: none;
-            padding: 18px 40px;
-            font-size: 18px;
+            padding: clamp(14px, 3vw, 18px) clamp(24px, 5vw, 40px);
+            font-size: clamp(14px, 3vw, 18px);
             font-weight: 700;
             border-radius: 50px;
             cursor: pointer;
@@ -147,6 +155,8 @@
             align-items: center;
             gap: 10px;
             transition: all 0.3s ease;
+            max-width: 90%;
+            justify-content: center;
         }
 
         .action-btn:hover {
@@ -156,6 +166,10 @@
 
         .action-btn:active {
             transform: translateX(-50%) translateY(0);
+        }
+
+        .action-btn-icon {
+            font-size: clamp(20px, 4vw, 24px);
         }
 
         /* Modal */
@@ -171,6 +185,8 @@
             align-items: center;
             justify-content: center;
             animation: fadeIn 0.2s ease;
+            padding: 20px;
+            overflow-y: auto;
         }
 
         .modal-overlay.active {
@@ -185,12 +201,13 @@
         .modal {
             background: white;
             border-radius: 16px;
-            padding: 24px;
-            width: 90%;
+            padding: clamp(20px, 4vw, 24px);
+            width: 100%;
             max-width: 500px;
-            max-height: 85vh;
+            max-height: 90vh;
             overflow-y: auto;
             animation: slideUp 0.3s ease;
+            margin: auto;
         }
 
         @keyframes slideUp {
@@ -199,7 +216,7 @@
         }
 
         .modal h2 {
-            font-size: 24px;
+            font-size: clamp(20px, 4vw, 24px);
             margin-bottom: 8px;
             color: #1f2937;
         }
@@ -207,7 +224,8 @@
         .modal p {
             color: #6b7280;
             margin-bottom: 20px;
-            font-size: 14px;
+            font-size: clamp(13px, 2.5vw, 14px);
+            line-height: 1.5;
         }
 
         .form-group {
@@ -219,7 +237,7 @@
             font-weight: 600;
             margin-bottom: 8px;
             color: #374151;
-            font-size: 14px;
+            font-size: clamp(13px, 2.5vw, 14px);
         }
 
         .required {
@@ -228,7 +246,7 @@
 
         .checkbox-group {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 12px;
         }
 
@@ -241,6 +259,7 @@
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s;
+            font-size: clamp(13px, 2.5vw, 14px);
         }
 
         .checkbox-item:hover {
@@ -262,6 +281,12 @@
             width: 20px;
             height: 20px;
             cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
         }
 
         input[type="text"], input[type="number"], textarea, select {
@@ -269,7 +294,7 @@
             padding: 12px;
             border: 2px solid #e5e7eb;
             border-radius: 8px;
-            font-size: 14px;
+            font-size: clamp(13px, 2.5vw, 14px);
             font-family: inherit;
             transition: border 0.2s;
         }
@@ -284,53 +309,27 @@
             min-height: 80px;
         }
 
-        .location-input-group {
-            display: flex;
-            gap: 12px;
-            align-items: flex-end;
-        }
-
-        .location-input-group .form-group {
-            flex: 1;
-            margin-bottom: 0;
-        }
-
-        .location-btn {
-            padding: 12px 16px;
-            background: #2563eb;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            white-space: nowrap;
-            transition: all 0.2s;
-            height: 46px;
-        }
-
-        .location-btn:hover {
-            background: #1d4ed8;
-        }
-
         .help-text {
-            font-size: 12px;
+            font-size: clamp(11px, 2vw, 12px);
             color: #6b7280;
             margin-top: 4px;
+            line-height: 1.4;
         }
 
         .button-group {
             display: flex;
             gap: 12px;
             margin-top: 24px;
+            flex-wrap: wrap;
         }
 
         .btn {
             flex: 1;
+            min-width: 120px;
             padding: 14px;
             border: none;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: clamp(14px, 2.5vw, 16px);
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
@@ -404,6 +403,7 @@
             margin-top: 8px;
             font-size: 11px;
             color: #4b5563;
+            word-wrap: break-word;
         }
 
         .update-btn {
@@ -416,6 +416,7 @@
             border-radius: 6px;
             font-weight: 600;
             cursor: pointer;
+            font-size: 13px;
         }
 
         .update-btn:hover {
@@ -436,6 +437,9 @@
             z-index: 3000;
             display: none;
             animation: slideDown 0.3s ease;
+            max-width: 90%;
+            text-align: center;
+            font-size: clamp(13px, 2.5vw, 14px);
         }
 
         @keyframes slideDown {
@@ -453,45 +457,145 @@
             padding: 12px;
             border-radius: 6px;
             margin-bottom: 16px;
-            font-size: 14px;
+            font-size: clamp(13px, 2.5vw, 14px);
         }
 
-        /* Responsive */
-        @media (max-width: 640px) {
-            .header h1 {
-                font-size: 18px;
-            }
-
-            .header-subtitle {
-                font-size: 10px;
-            }
-
-            .stats {
-                gap: 8px;
-            }
-
-            .stat-number {
-                font-size: 16px;
+        /* Tablet Responsive (768px and below) */
+        @media (max-width: 768px) {
+            .header {
+                padding: 12px 16px;
             }
 
             .legend {
                 top: auto;
-                bottom: 100px;
+                bottom: 110px;
                 right: 10px;
+                left: 10px;
+                max-width: none;
                 padding: 12px;
+            }
+
+            .legend h3 {
+                font-size: 13px;
+            }
+
+            .legend-item {
+                font-size: 12px;
+            }
+
+            .action-btn {
+                bottom: 20px;
+                padding: 14px 24px;
             }
 
             .checkbox-group {
                 grid-template-columns: 1fr;
             }
+        }
 
-            .location-input-group {
+        /* Mobile Responsive (480px and below) */
+        @media (max-width: 480px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 12px;
+            }
+
+            .header-left {
+                width: 100%;
+            }
+
+            .stats {
+                width: 100%;
+                justify-content: space-around;
+                margin-top: 8px;
+            }
+
+            .legend {
+                bottom: 90px;
+                padding: 10px;
+            }
+
+            .legend-item {
+                gap: 8px;
+                margin-bottom: 6px;
+            }
+
+            .action-btn {
+                bottom: 15px;
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+
+            .modal {
+                padding: 16px;
+                border-radius: 12px;
+            }
+
+            .button-group {
                 flex-direction: column;
             }
 
-            .location-btn {
+            .btn {
                 width: 100%;
-                height: auto;
+            }
+
+            .checkbox-item {
+                padding: 10px;
+            }
+
+            .leaflet-popup {
+                max-width: 250px !important;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 360px) {
+            .header h1 {
+                font-size: 16px;
+            }
+
+            .header-subtitle {
+                font-size: 9px;
+            }
+
+            .stat-number {
+                font-size: 14px;
+            }
+
+            .stat-label {
+                font-size: 8px;
+            }
+
+            .action-btn {
+                padding: 10px 16px;
+                font-size: 13px;
+            }
+        }
+
+        /* Landscape mode adjustments */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .header {
+                padding: 8px 12px;
+            }
+
+            .header h1 {
+                font-size: 16px;
+            }
+
+            .legend {
+                top: 70px;
+                padding: 8px;
+                font-size: 11px;
+            }
+
+            .action-btn {
+                bottom: 10px;
+                padding: 10px 20px;
+            }
+
+            .modal {
+                max-height: 95vh;
             }
         }
     </style>
@@ -533,8 +637,8 @@
 
     <!-- Action Button -->
     <button class="action-btn" onclick="openModal()">
-        <span style="font-size: 24px;">📍</span>
-        Need Help? Mark Location
+        <span class="action-btn-icon">📍</span>
+        <span>Need Help? Mark Location</span>
     </button>
 
     <!-- Modal -->
@@ -804,7 +908,6 @@
         }
 
         function updateBarangayList() {
-            // This function can be expanded to show specific barangays per municipality
             const municipality = document.getElementById('municipality').value;
             const barangayInput = document.getElementById('barangay');
             
@@ -822,7 +925,6 @@
         function submitRequest(event) {
             event.preventDefault();
             
-            // Validate form
             const municipality = document.getElementById('municipality').value;
             const barangay = document.getElementById('barangay').value.trim();
             const contact = document.getElementById('contact').value.trim();
@@ -853,7 +955,6 @@
             const peopleCount = document.getElementById('peopleCount').value;
             const notes = document.getElementById('notes').value;
             
-            // Get coordinates for the municipality (approximate center points)
             const municipalityCoordinates = {
                 'Batangas City': [13.7565, 121.0583],
                 'Lipa City': [13.9411, 121.1633],
@@ -892,7 +993,6 @@
             };
             
             const coords = municipalityCoordinates[municipality] || [13.7565, 121.0583];
-            // Add slight random offset for exact positioning
             const lat = coords[0] + (Math.random() - 0.5) * 0.02;
             const lng = coords[1] + (Math.random() - 0.5) * 0.02;
             
@@ -918,14 +1018,11 @@
             locations.push(newLocation);
             updateStats();
             
-            // Center map on new location
             map.setView([lat, lng], 14);
             
-            // Close modal and show success
             closeModal();
             showSuccess();
             
-            // Open the popup for the new marker
             setTimeout(() => {
                 newLocation.marker.openPopup();
             }, 500);
@@ -944,12 +1041,10 @@
             const location = locations[index];
             location.status = 'served';
             
-            // Remove old marker and add new one with updated status
             map.removeLayer(location.marker);
             addMarker(location);
             updateStats();
             
-            // Show success message
             const msg = document.getElementById('successMessage');
             msg.textContent = '✓ Location marked as served!';
             msg.classList.add('active');
@@ -960,21 +1055,18 @@
             }, 3000);
         }
 
-        // Add keyboard accessibility
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeModal();
             }
         });
 
-        // Prevent body scroll when modal is open
         document.getElementById('modalOverlay').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeModal();
             }
         });
 
-        // Phone number formatting (optional enhancement)
         document.getElementById('contact').addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length > 11) {
@@ -982,6 +1074,18 @@
             }
             e.target.value = value;
         });
+
+        // Handle map resize on orientation change
+        window.addEventListener('orientationchange', function() {
+            setTimeout(function() {
+                map.invalidateSize();
+            }, 100);
+        });
+
+        // Initial map size adjustment
+        setTimeout(function() {
+            map.invalidateSize();
+        }, 200);
     </script>
 </body>
 </html>
